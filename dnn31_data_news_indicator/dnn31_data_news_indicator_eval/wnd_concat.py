@@ -8,15 +8,10 @@ import sys
 import os
 import logging
 import json
-import math
 import time
-import inspect
-import feature_column
-from six.moves import urllib
+from code import feature_column
 import tensorflow as tf
 from tensorflow.contrib.learn.python.learn import monitors
-from tensorflow.contrib.learn.python.learn.estimators import run_config
-from tensorflow.python.training import basic_session_run_hooks
 from tensorflow.python.ops import array_ops
 from tensorflow.python.ops import parsing_ops
 from tensorflow.python.framework import dtypes
