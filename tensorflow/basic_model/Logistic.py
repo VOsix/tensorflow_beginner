@@ -3,8 +3,6 @@
 ' Logistic '
 __author__ = 'lzjiang'
 
-
-
 import logging
 import numpy as np
 import tensorflow as tf
@@ -46,6 +44,8 @@ from tensorflow.examples.tutorials.mnist import input_data
 mnist = input_data.read_data_sets("./data", one_hot=True)
 print(mnist.train.num_examples)
 
+
+
 # learning_rate = 0.01
 # training_epoch = 100
 # batch_size = 1
@@ -54,11 +54,11 @@ print(mnist.train.num_examples)
 # pdb.set_trace()
 # a1 = np.array([[1., 10.], [10., 100.]], dtype=np.float32)
 
-x = tf.placeholder(dtype="float32", shape=[None, 784])
-y = tf.placeholder(dtype="float32", shape=[None, 10])
+x = tf.placeholder(dtype="float32", shape=[None, 17])
+y = tf.placeholder(dtype="float32", shape=[None, 1])
 
-W = tf.Variable(tf.random_uniform([784, 10]))
-b = tf.Variable(tf.random_uniform([10]))
+W = tf.Variable(tf.random_uniform([17, 1]))
+b = tf.Variable(tf.random_uniform([1, ]))
 
 
 def main():

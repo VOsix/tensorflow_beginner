@@ -148,7 +148,6 @@ class WideAndDeepModel(object):
 
         return (linear_feature_columns, dnn_feature_columns, ads_feature_columns, user_feature_columns)
 
-
     def build_linear_optimizer(self):
         linear_optimizer = tf.train.FtrlOptimizer(
                 learning_rate = float(FLAGS.linear_learning_rate),
@@ -278,13 +277,13 @@ class WideAndDeepInputPipeline(object):
             feature_dict_concat[combined_weights] = tf.sparse_concat(axis=1,
                     sp_inputs=[feature_dict[key] for key in list_weights])
 
-        # for item in self.feature_info["selected_features"]:
-            # if item not in concat_features:
-                # feature_dict_concat[item] = feature_dict[item]
+        for item in self.feature_info["selected_features"]:
+            if item not in concat_features:
+                feature_dict_concat[item] = feature_dict[item]
         
-        # for item in self.feature_info["selected_weights"]:
-            # if item not in concat_weights:
-                # feature_dict_concat[item] = feature_dict[item]
+        for item in self.feature_info["selected_weights"]:
+            if item not in concat_weights:
+                feature_dict_concat[item] = feature_dict[item]
 
 
         return feature_dict_concat, label
@@ -314,7 +313,7 @@ def train_model():
             run_config = None,
             feature_map_file = FLAGS.feature_map_file)
     estimator = model.build_estimator()
-    profile_hook = [tf.train.ProfileHook(save_steps=1000)]
+    profile_hook = [tf.train.ProfilerHook(save_steps=1000)]
     estimator.train(
             input_fn = lambda: train_input_fn(),
             steps = 100000,
